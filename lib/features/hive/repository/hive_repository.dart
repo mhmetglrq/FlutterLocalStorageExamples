@@ -17,52 +17,42 @@ class HiveRepository {
   HiveRepository({required this.box});
 
   Future<String> get(String key) async {
-    final box = await Hive.openBox('myBox');
-    return box.get(key);
+    return box?.get(key);
   }
 
   Future<void> add(String key, String value) async {
-    final box = await Hive.openBox('myBox');
-    await box.put(key, value);
+    await box?.put(key, value);
   }
 
   Future<void> delete(String key) async {
-    final box = await Hive.openBox('myBox');
-    await box.delete(key);
+    await box?.delete(key);
   }
 
   Future<void> update(String key, String value) async {
-    final box = await Hive.openBox('myBox');
-    await box.put(key, value);
+    await box?.put(key, value);
   }
 
   Future<void> clear() async {
-    final box = await Hive.openBox('myBox');
-    await box.clear();
+    await box?.clear();
   }
 
   Future<List<String>> getAll() async {
-    final box = await Hive.openBox('myBox');
-    return box.values.toList().cast<String>();
+    return box!.values.toList().cast<String>();
   }
 
   Future<void> addAll(List<String> values) async {
-    final box = await Hive.openBox('myBox');
-    await box.addAll(values);
+    await box?.addAll(values);
   }
 
   Future<void> deleteAll(List<String> keys) async {
-    final box = await Hive.openBox('myBox');
-    await box.deleteAll(keys);
+    await box?.deleteAll(keys);
   }
 
   Future<void> updateAll(List<String> keys, List<String> values) async {
-    final box = await Hive.openBox('myBox');
-    await box.putAll(Map.fromIterables(keys, values));
+    await box?.putAll(Map.fromIterables(keys, values));
   }
 
   Future<void> close() async {
-    final box = await Hive.openBox('myBox');
-    await box.close();
+    await box?.close();
   }
 }
